@@ -29,7 +29,16 @@ class ___logic_programmingTests: XCTestCase {
          }
       }
       do{
-         print(all_students())
+         let students = all_students()
+         print("[", terminator: "")
+         for i in students.indices.dropLast() {
+            print("\(students[i]), ", terminator: "")
+         }
+         if students.isEmpty {
+            print("]")
+         } else {
+            print("\(students[students.endIndex - 1])]")
+         }
       }
       //   XCTAssertEqual(___logic_programming().text, "Hello, World!")
    }
