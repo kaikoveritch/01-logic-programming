@@ -56,16 +56,13 @@ func all_students() -> [Person] {
    var list = Array<Person>()
    let x = Variable(named: "x")
    let q = is_student(who: x)
-   let results = q(State())
-   for substitution in results {
-      for (_,value) in substitution.reified() {
-         list += [value as! Person]
-      }
+   for solution in solve(q) {
+      list += [solution[x] as! Person]
    }
    return list
 }
 
-func attends(who: Person, course: Course, year: Year) -> Goal {
+func attends(who: Term, course: Term, year: Term) -> Goal {
    return is_student(who: who) && is_course(what: course) && is_year(what: year) &&
       (
          ((who === Person.Petr) && (course === Course.Semantics) && (year === Year.y2017))      ||
